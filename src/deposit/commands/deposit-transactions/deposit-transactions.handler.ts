@@ -1,17 +1,13 @@
 import { ConfigService } from '@nestjs/config';
 import {
-  CommandBus,
   CommandHandler,
   ICommandHandler,
-  QueryBus,
 } from '@nestjs/cqrs';
 
 import { AxiosAdapter } from 'src/common/adapters/axios.adapter';
 import { getHeaders } from 'src/common/helpers/get-headers-helper';
-import { GetDepositByIdQuery } from '../../queries/getDepositById/get-deposit-by-id.query';
 import { DepositTransactionsCommand } from './deposit-transactions.command';
-import { Logger, NotFoundException } from '@nestjs/common';
-import { Deposit } from 'src/deposit/models/deposit.entity';
+import { Logger} from '@nestjs/common';
 
 @CommandHandler(DepositTransactionsCommand)
 export class DepositTransactionsHandler

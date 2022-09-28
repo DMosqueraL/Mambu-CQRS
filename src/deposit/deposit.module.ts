@@ -14,7 +14,7 @@ import { TransferTransactionHandler } from './commands/transfer-transactions/tra
 import { WithdrawalTransactionsHandler } from './commands/withdrawal-transactions/withdrawal-transactions.handler';
 
 import { DepositController } from './deposit.controller';
-import { AccountActiveMiddleware } from './middlewares/account-active.middleware';
+import { ActiveApprovedMiddleware } from './middlewares/active-approved.middleware';
 
 @Module({
   imports: [CommonModule, CqrsModule],
@@ -30,14 +30,18 @@ import { AccountActiveMiddleware } from './middlewares/account-active.middleware
 export class DepositModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {
     consumer
-      .apply(AccountActiveMiddleware)
-      .forRoutes(
-        { 
-          path: 'deposits/:id', 
-          method: RequestMethod.GET
-        },
+      .apply(ActiveApprovedMiddleware)
+      .forRoutes(        
         {
           path: 'deposits/:id/deposit-transactions',
+          method: RequestMethod.POST,
+        },
+        {
+          path: 'deposits/:id/withdrawal-transactions',
+          method: RequestMethod.POST,
+        },
+        {
+          path: 'deposits/:id/transfer-transactions',
           method: RequestMethod.POST,
         },
       );

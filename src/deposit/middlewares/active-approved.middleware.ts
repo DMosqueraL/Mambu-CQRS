@@ -11,7 +11,7 @@ import { Deposit } from '../models/deposit.entity';
 import { GetDepositByIdQuery } from '../queries/getDepositById/get-deposit-by-id.query';
 
 @Injectable()
-export class AccountActiveMiddleware implements NestMiddleware {
+export class ActiveApprovedMiddleware implements NestMiddleware {
   constructor(private readonly queryBus: QueryBus) {}
 
   async use(req: Request, res: Response, next: NextFunction) {
