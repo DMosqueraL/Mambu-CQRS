@@ -1,9 +1,9 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { CommonModule } from './common/common.module';
-import { ClientModule } from './client/client.module';
-import { LoanModule } from './loan/loan.module';
-import { DepositModule } from './deposit/deposit.module';
+import { ClientModule } from './domain/client/client.module';
+import { LoanModule } from './domain/loan/loan.module';
+import { DepositModule } from './domain/deposit/deposit.module';
 
 @Module({
   imports: [
@@ -12,8 +12,8 @@ import { DepositModule } from './deposit/deposit.module';
     }),
     CommonModule,
     ClientModule,
-    LoanModule,
     DepositModule,
+    LoanModule,
   ],
   controllers: [],
   providers: [],
