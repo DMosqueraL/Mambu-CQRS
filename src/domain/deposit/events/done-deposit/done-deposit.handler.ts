@@ -32,8 +32,6 @@ export class DoneDepositHandlerEvent
     );
     logger.log(`The Deposit transaction was successful`);
 
-    console.log(data);
-
     return data;
   }
 }

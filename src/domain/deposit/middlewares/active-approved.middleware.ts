@@ -34,6 +34,6 @@ export class ActiveApprovedMiddleware implements NestMiddleware {
         'This Deposit Account must be APPROVED or ACTIVE for to do transactions.',
       );
     }
-    next();
+    //next();
   }
 }

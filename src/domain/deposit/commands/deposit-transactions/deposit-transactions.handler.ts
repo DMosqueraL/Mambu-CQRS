@@ -8,19 +8,18 @@ import { DoneDepositEvent } from '../../events/done-deposit/done-deposit.event';
 export class DepositTransactionsHandler
   implements ICommandHandler<DepositTransactionsCommand>
 {
-  constructor(
-    private readonly eventBus: EventBus,
-  ) {}
+  constructor(private readonly eventBus: EventBus) {}
 
   async execute(command: DepositTransactionsCommand): Promise<any> {
     const logger = new Logger('DepositTransactions');
 
     const { depositTransactionsDto, id } = command;
 
-    const depositDone = this.eventBus.publish(
+    this.eventBus.publish(
       new DoneDepositEvent(depositTransactionsDto, id),
     );
-    logger.log(`DoneDepositEvent called...`);   
-    //return depositDone; 
+    logger.log(`DoneDepositEvent called...`);
+
+    return depositTransactionsDto;
   }
 }
